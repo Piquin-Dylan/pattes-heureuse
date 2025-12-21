@@ -16,6 +16,8 @@
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
         </flux:navlist.group>
+        <flux:navlist.item icon="home" :href="route('greeter')" :current="request()->routeIs('greeter')"
+                           wire:navigate>{{ __('Animals') }}</flux:navlist.item>
     </flux:navlist>
 
     <flux:spacer/>
@@ -60,7 +62,6 @@
                 </flux:menu.radio.group>
 
                 <flux:menu.separator/>
-
                 <flux:menu.radio.group>
                     <flux:menu.item :href="route('profile.edit')" icon="cog"
                                     wire:navigate>{{ __('Settings') }}</flux:menu.item>

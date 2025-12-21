@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="submit">
+    <form class="pb-10" wire:submit.prevent="submit">
         <input type="text" wire:model.defer="name" placeholder="Titre">
         @error('name') <span style="color:red">{{ $message }}</span> @enderror
 
@@ -9,14 +9,7 @@
         <button type="submit">Ajouter</button>
     </form>
 
-
-    <div>
-        <h2>Liste des animaux</h2>
-
-        <ul>
-            @foreach($animals as $animal)
-                <li>{{$animal->name}}</li>
-            @endforeach
-        </ul>
-    </div>
+    <section>
+        <livewire:show-animal></livewire:show-animal>
+    </section>
 </div>

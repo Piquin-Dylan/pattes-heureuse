@@ -18,20 +18,11 @@ class Greeter extends Component
     public function submit()
     {
         $this->validate();
-
-        Animals::create([
-            'name' => $this->name,
-            'description' => $this->description,
-        ]);
-
         $this->reset(['name', 'description']);
     }
 
     public function render()
     {
-        return view('livewire.greeter',[
-            'animals'=> Animals::all()
-        ]);
-
+        return view('livewire.greeter');
     }
 }
