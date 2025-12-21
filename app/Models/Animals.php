@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Animals extends Model
 {
     protected $fillable = ['title', 'description',
-        'name',
+        'name','photo_path'
     ];
 
     public static function search(mixed $searchAnimal)

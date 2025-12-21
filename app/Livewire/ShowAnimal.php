@@ -8,15 +8,6 @@ use Livewire\Component;
 class ShowAnimal extends Component
 {
     public $searchAnimal = '';
-    public function submit()
-    {
-
-        Animals::create([
-            'name' => $this->name,
-            'description' => $this->description
-        ]);
-    }
-
 
     public function render()
     {
