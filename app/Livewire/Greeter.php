@@ -29,6 +29,9 @@ class Greeter extends Component
 
     public function render()
     {
-        return view('livewire.greeter');
+        return view('livewire.greeter',[
+            'animals'=> Animals::all()
+        ]);
+
     }
 }
