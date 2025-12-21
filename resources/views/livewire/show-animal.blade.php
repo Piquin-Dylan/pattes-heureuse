@@ -3,11 +3,15 @@
 
     <input wire:model.live.debounce="searchAnimal" class="bg-white rounded-2xl text-black p-4"
            placeholder="Recherchez un animal" type="search">
+
     <ul class="flex flex-row gap-6 pt-4">
         @foreach($animals as $animal)
             <li class="bg-white text-2xl text-black p-5 rounded-2xl w-32 text-center"
-                wire:key="{{$animal->name}}">{{$animal->name}}</li>
+                wire:key="{{$animal->id}}">
+
+                <img src="{{ asset('storage/' . $animal->photo_path) }}" alt="{{ $animal->name }}" width="100">
+                <div>{{ $animal->name }}</div>
+            </li>
         @endforeach
-        
     </ul>
 </div>
