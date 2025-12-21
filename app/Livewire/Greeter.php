@@ -10,7 +10,7 @@ use Livewire\Component;
 class Greeter extends Component
 {
     #[Validate('required')]
-    public $title = '';
+    public $name = '';
 
     #[Validate('required')]
     public $description = '';
@@ -20,11 +20,11 @@ class Greeter extends Component
         $this->validate();
 
         Animals::create([
-            'title' => $this->title,
+            'name' => $this->name,
             'description' => $this->description,
         ]);
 
-        $this->reset(['title', 'description']);
+        $this->reset(['name', 'description']);
     }
 
     public function render()
