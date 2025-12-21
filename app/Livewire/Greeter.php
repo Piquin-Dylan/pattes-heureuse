@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class Greeter extends Component
 {
+
+
     #[Validate('required')]
     public $name = '';
 
@@ -24,5 +26,6 @@ class Greeter extends Component
     public function render()
     {
         return view('livewire.greeter');
+
     }
 }

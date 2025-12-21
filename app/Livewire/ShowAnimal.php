@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class ShowAnimal extends Component
 {
+    public $searchAnimal = '';
     public function submit()
     {
 
@@ -20,9 +21,7 @@ class ShowAnimal extends Component
     public function render()
     {
         return view('livewire.show-animal', [
-            'animals' => Animals::all()
+            'animals' => Animals::search($this->searchAnimal)->get(),
         ]);
-
-
     }
 }

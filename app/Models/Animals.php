@@ -9,4 +9,9 @@ class Animals extends Model
     protected $fillable = ['title', 'description',
         'name',
     ];
+
+    public static function search(mixed $searchAnimal)
+    {
+      return  Animals::where('name', 'LIKE', "%$searchAnimal%");
+    }
 }
