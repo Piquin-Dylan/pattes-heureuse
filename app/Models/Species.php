@@ -21,6 +21,6 @@ class Species extends Model
 
     public function races(): HasMany
     {
-        return $this->hasMany(Races::class);
+        return $this->hasMany(Race::class);
     }
 }
