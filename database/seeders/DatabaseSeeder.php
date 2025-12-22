@@ -2,27 +2,37 @@
 
 namespace Database\Seeders;
 
+use App\Models\Race;
 use App\Models\Species;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        Species::create(['species_name' => 'Chat']);
-        Species::create(['species_name' => 'Chien']);
-        Species::create(['species_name' => 'Lapin']);
-    }
 
+        $data = [
+            'Chat' => ['Persan', 'Siamois', 'Maine Coon'],
+            'Chien' => ['Labrador', 'Caniche', 'Berger Allemand'],
+            'Lapin' => ['Bélier', 'Rex'],
+        ];
+
+        foreach ($data as $speciesName => $races) {
+            $species = Species::create([
+                'species_name' => $speciesName,
+            ]);
+
+            foreach ($races as $raceName) {
+                Race::create([
+                    'race_name' => $raceName,
+                    'species_id' => $species->id,
+                ]);
+            }
+        }
+    }
 }
