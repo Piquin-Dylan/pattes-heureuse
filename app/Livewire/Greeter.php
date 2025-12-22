@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Animals;
+use App\Models\Species;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -21,6 +22,9 @@ class Greeter extends Component
     #[Validate('required|image|max:1024')]
     public $photo;
 
+    #[Validate('required')]
+    public $species = '';
+
 
 
 
@@ -34,15 +38,17 @@ class Greeter extends Component
             'name' => $this->name,
             'description' => $this->description,
             'photo_path' => $path,
+            'species_id' => $this->species,
         ]);
 
-        $this->reset(['name', 'description', 'photo']);
+        $this->reset(['name', 'description', 'photo','species']);
     }
 
     public function render()
     {
         return view('livewire.greeter', [
             'animals' => Animals::all(),
+            'species' => Species::all(),
         ]);
     }
 }

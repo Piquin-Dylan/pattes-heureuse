@@ -5,6 +5,7 @@
                placeholder="Nom de l'animal">
         <label>Selectionner une race</label>
         <select>
+            @foreach() @endforeach
             <option>Test</option>
         </select>
         @error('name') <span style="color:red">{{ $message }}</span> @enderror

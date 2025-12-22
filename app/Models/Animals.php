@@ -10,7 +10,8 @@ class Animals extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'description',
-        'name','photo_path'
+        'name', 'photo_path',
+        'species_id'
     ];
 
     public static function search(mixed $searchAnimal)
