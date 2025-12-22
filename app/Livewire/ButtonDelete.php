@@ -12,7 +12,6 @@ class ButtonDelete extends Component
         return view('livewire.button-delete');
     }
 
-
     public function delete($animal){
 
         $this->authorize('delete',$animal);

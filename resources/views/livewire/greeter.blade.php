@@ -1,16 +1,23 @@
 <div>
-<form class="pb-10" wire:submit.prevent="submit">
-    <input type="text" wire:model.defer="name" placeholder="Titre">
-    @error('name') <span style="color:red">{{ $message }}</span> @enderror
+    <form class="pb-10" wire:submit.prevent="submit">
+        <label class="flex flex-col" for="name">Nom de l'animal</label>
+        <input id="name" class="bg-white text-black rounded-2xl p-2" type="text" wire:model.defer="name"
+               placeholder="Nom de l'animal">
+        <label>Selectionner une race</label>
+        <select>
+            <option>Test</option>
+        </select>
+        @error('name') <span style="color:red">{{ $message }}</span> @enderror
 
-    <input type="file" wire:model="photo">
-    @error('photo') <span style="color:red">{{ $message }}</span> @enderror
+        <input type="file" wire:model="photo">
+        @error('photo') <span style="color:red">{{ $message }}</span> @enderror
 
-    <textarea wire:model.defer="description" placeholder="Description"></textarea>
-    @error('description') <span style="color:red">{{ $message }}</span> @enderror
 
-    <button type="submit">Ajouter</button>
-</form>
+        <textarea wire:model.defer="description" placeholder="Description"></textarea>
+        @error('description') <span style="color:red">{{ $message }}</span> @enderror
+
+        <button type="submit">Ajouter</button>
+    </form>
 
     <livewire:show-animal></livewire:show-animal>
 </div>

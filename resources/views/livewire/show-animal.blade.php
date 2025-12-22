@@ -10,7 +10,7 @@
                 wire:key="{{$animal->id}}" >
                 <img src="{{ asset('storage/' . $animal->photo_path) }}" alt="{{ $animal->name }}" width="100">
                 <div>{{ $animal->name }}</div>
-                <button wire:click="delete({{$animal->id}})">Delete</button>
+                <button wire:confirm="Voulez vous vraiment cette animal ?" wire:click="delete({{$animal->id}})">Delete</button>
 
             </li>
         @endforeach
