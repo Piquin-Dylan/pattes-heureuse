@@ -14,4 +14,5 @@ class Animals extends Model
     {
       return  Animals::where('name', 'LIKE', "%$searchAnimal%");
     }
+
 }

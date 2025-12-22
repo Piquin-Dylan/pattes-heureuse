@@ -9,6 +9,12 @@ class ShowAnimal extends Component
 {
     public $searchAnimal = '';
 
+
+    public function delete(Animals $animals) {
+
+        $animals->delete();
+    }
+
     public function render()
     {
         return view('livewire.show-animal', [

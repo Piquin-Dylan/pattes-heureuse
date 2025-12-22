@@ -11,6 +11,7 @@ class Greeter extends Component
 {
     use WithFileUploads;
 
+
     #[Validate('required')]
     public $name = '';
 
@@ -19,6 +20,9 @@ class Greeter extends Component
 
     #[Validate('required|image|max:1024')]
     public $photo;
+
+
+
 
     public function submit()
     {

@@ -5,9 +5,6 @@
 
     <input type="file" wire:model="photo">
     @error('photo') <span style="color:red">{{ $message }}</span> @enderror
-    @if ($photo)
-        <img src="{{ $photo->temporaryUrl() }}" width="150">
-    @endif
 
     <textarea wire:model.defer="description" placeholder="Description"></textarea>
     @error('description') <span style="color:red">{{ $message }}</span> @enderror
