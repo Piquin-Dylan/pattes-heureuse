@@ -41,7 +41,7 @@ class Greeter extends Component
             'species_id' => $this->species_name,
         ]);
 
-        $this->reset(['name', 'description', 'photo','species']);
+        $this->reset(['name', 'description', 'photo','species_name']);
     }
 
     public function render()
