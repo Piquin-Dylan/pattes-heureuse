@@ -4,9 +4,10 @@
         <input id="name" class="bg-white text-black rounded-2xl p-2" type="text" wire:model.defer="name"
                placeholder="Nom de l'animal">
         <label>Selectionner une race</label>
-        <select>
-            @foreach() @endforeach
-            <option>Test</option>
+        <select wire:model="species_name">
+            @foreach($species as $specie)
+                <option>{{$specie->species_name}}</option>
+            @endforeach
         </select>
         @error('name') <span style="color:red">{{ $message }}</span> @enderror
 

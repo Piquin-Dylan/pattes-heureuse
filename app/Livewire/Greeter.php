@@ -23,7 +23,7 @@ class Greeter extends Component
     public $photo;
 
     #[Validate('required')]
-    public $species = '';
+    public $species_name = '';
 
 
 
@@ -38,7 +38,7 @@ class Greeter extends Component
             'name' => $this->name,
             'description' => $this->description,
             'photo_path' => $path,
-            'species_id' => $this->species,
+            'species_id' => $this->species_name,
         ]);
 
         $this->reset(['name', 'description', 'photo','species']);
