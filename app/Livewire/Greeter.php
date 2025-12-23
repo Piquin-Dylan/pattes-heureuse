@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Animals;
+use App\Models\Race;
 use App\Models\Species;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -11,7 +12,6 @@ use Livewire\WithFileUploads;
 class Greeter extends Component
 {
     use WithFileUploads;
-
 
     #[Validate('required')]
     public $name = '';
@@ -25,8 +25,21 @@ class Greeter extends Component
     #[Validate('required')]
     public $species_name = '';
 
+    public $race_name = '';
 
+    public $race;
 
+    public function mount()
+    {
+        $this->race = collect([]);
+    }
+
+    public function updatedSpeciesName()
+    {
+        $this->race = Race::where('species_id', (int)$this->species_name)->get();
+
+        $this->race_name = '';
+    }
 
     public function submit()
     {
@@ -39,9 +52,11 @@ class Greeter extends Component
             'description' => $this->description,
             'photo_path' => $path,
             'species_id' => $this->species_name,
+            'race_id' => $this->race_name,
         ]);
 
-        $this->reset(['name', 'description', 'photo','species_name']);
+        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name']);
+        $this->race = collect([]);
     }
 
     public function render()
@@ -49,6 +64,7 @@ class Greeter extends Component
         return view('livewire.greeter', [
             'animals' => Animals::all(),
             'species' => Species::all(),
+            'race' => $this->race,
         ]);
     }
 }

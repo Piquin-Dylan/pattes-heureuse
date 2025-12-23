@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->string('description');
             $table->string('photo_path')->nullable();
             $table->foreignId('species_id');
+            $table->foreignId('race_id');
 
 
             $table->timestamps();

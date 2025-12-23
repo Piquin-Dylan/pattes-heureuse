@@ -11,7 +11,8 @@ class Animals extends Model
     use HasFactory;
     protected $fillable = ['title', 'description',
         'name', 'photo_path',
-        'species_id'
+        'species_id',
+        'race_id',
     ];
 
     public static function search(mixed $searchAnimal)
@@ -23,4 +24,6 @@ class Animals extends Model
 
         return $this->belongsTo(Species::class);
     }
+
+
 }
