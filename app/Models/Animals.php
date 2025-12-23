@@ -13,6 +13,7 @@ class Animals extends Model
         'name', 'photo_path',
         'species_id',
         'race_id',
+        'age'
     ];
 
     public static function search(mixed $searchAnimal)

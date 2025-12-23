@@ -23,6 +23,9 @@ class Greeter extends Component
     public $photo;
 
     #[Validate('required')]
+    public $age;
+
+    #[Validate('required')]
     public $species_name = '';
 
     public $race_name = '';
@@ -53,9 +56,10 @@ class Greeter extends Component
             'photo_path' => $path,
             'species_id' => $this->species_name,
             'race_id' => $this->race_name,
+            'age' => $this->age,
         ]);
 
-        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name']);
+        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name','age']);
         $this->race = collect([]);
     }
 

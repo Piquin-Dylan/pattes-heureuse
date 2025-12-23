@@ -14,8 +14,7 @@ return new class extends Migration {
             $table->string('photo_path')->nullable();
             $table->foreignId('species_id');
             $table->foreignId('race_id');
-
-
+            $table->integer('age');
             $table->timestamps();
         });
     }
