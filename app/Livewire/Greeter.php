@@ -35,6 +35,10 @@ class Greeter extends Component
 
     public $coats_species = '';
 
+    public $coats_species_id;
+
+    public $race_id;
+
     public function mount()
     {
         $this->race = collect([]);
@@ -48,9 +52,10 @@ class Greeter extends Component
         $this->updateCoats();
     }
 
-    public function updateCoats() {
-    $species_coats = Species::find($this->species_name);
-    $this->coats_species = $species_coats->coats;
+    public function updateCoats()
+    {
+        $species_coats = Species::find($this->species_name);
+        $this->coats_species = $species_coats->coats;
     }
 
     public function submit()
@@ -64,11 +69,12 @@ class Greeter extends Component
             'description' => $this->description,
             'photo_path' => $path,
             'species_id' => $this->species_name,
-            'race_id' => $this->race_name,
+            'race_id' => $this->race,
+            'coats_specy_id' => $this->coats_species_id,
             'age' => $this->age,
         ]);
 
-        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name','age']);
+        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name', 'age', 'coats_species']);
         $this->race = collect([]);
         $this->coats_species = collect([]);
     }
@@ -79,7 +85,7 @@ class Greeter extends Component
             'animals' => Animals::all(),
             'species' => Species::all(),
             'coats_species' => $this->coats_species,
-            'race' => $this->race,
+            'race_id' => $this->race_id,
         ]);
     }
 }

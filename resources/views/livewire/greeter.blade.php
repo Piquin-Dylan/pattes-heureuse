@@ -12,7 +12,7 @@
     </select>
 
     <label>Selectionner la race</label>
-    <select wire:mode.live="race_name">
+    <select wire:mode.live="race_id">
         <option value="">-- Choisir une race --</option>
         @foreach($race as $r)
             <option value="{{$r->id}}">{{$r->race_name}}</option>
@@ -20,7 +20,7 @@
     </select>
     <label>Sélectionner un pelage</label>
 
-    <select wire:model.live="coats_species">
+    <select wire:model.live="coats_species_id">
         <option value="">-- Choisir un pelage --</option>
         @foreach($coats_species as $coat)
             <option value="{{ $coat->id }}">{{ $coat->name }}</option>

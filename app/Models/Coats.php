@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Coats extends Model
@@ -16,5 +17,10 @@ class Coats extends Model
     {
 
         return $this->belongsToMany(Species::class, 'coats_species');
+    }
+
+    public function animals() : BelongsTo {
+
+        return $this->belongsTo(\Animal::class);
     }
 }

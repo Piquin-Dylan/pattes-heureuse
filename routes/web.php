@@ -27,6 +27,7 @@ Route::domain('admin.pattes-heureuse.test')->middleware(['auth'])->group(functio
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::get('/greeter', Greeter::class)->name('greeter');
+    Route::get('/volunteers', Greeter::class)->name('volunteers');
     Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
 
     Route::redirect('/settings', '/settings/profile');
