@@ -6,7 +6,7 @@ use AllowDynamicProperties;
 use App\Models\Animals;
 use Livewire\Component;
 
-#[AllowDynamicProperties] class DescriptionAnimal extends Component
+ class DescriptionAnimal extends Component
 {
 
     public $animal;

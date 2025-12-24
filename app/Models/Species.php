@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,5 +23,11 @@ class Species extends Model
     public function races(): HasMany
     {
         return $this->hasMany(Race::class);
+    }
+
+    public function coats(): BelongsToMany
+    {
+
+        return $this->belongsToMany(Coats::class, 'coats_species');
     }
 }

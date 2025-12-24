@@ -5,29 +5,36 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
-use App\Livewire\ShowAnimal;
+use App\Livewire\DescriptionAnimal;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::domain('pattes-heureuse.test')->group(function () {
 
-Route::get('greeter', Greeter::class)->name('greeter');
-Route::get('show-animal/{animal}', \App\Livewire\DescriptionAnimal::class)->name('show-animal');
+    Route::view('/', 'client.home')->name('client.home');
+    Route::view('/about', 'client.about')->name('client.about');
+    Route::view('/volunteers', 'client.volunteers')->name('client.volunteers');
+    Route::view('/adoption', 'client.adoption')->name('client.adoption');
+    Route::view('/descriptionAnimal', 'client.descriptionAnimal')->name('client.descriptionAnimal');
+    Route::view('/contact', 'client.contact')->name('client.contact');
 
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
+});
 
-    Route::get('settings/profile', Profile::class)->name('profile.edit');
-    Route::get('settings/password', Password::class)->name('user-password.edit');
-    Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
 
-    Route::get('settings/two-factor', TwoFactor::class)
+Route::domain('admin.pattes-heureuse.test')->middleware(['auth'])->group(function () {
+
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/greeter', Greeter::class)->name('greeter');
+    Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
+
+    Route::redirect('/settings', '/settings/profile');
+    Route::get('/settings/profile', Profile::class)->name('profile.edit');
+    Route::get('/settings/password', Password::class)->name('user-password.edit');
+    Route::get('/settings/appearance', Appearance::class)->name('appearance.edit');
+
+    Route::get('/settings/two-factor', TwoFactor::class)
         ->middleware(
             when(
                 Features::canManageTwoFactorAuthentication()
@@ -38,3 +45,7 @@ Route::middleware(['auth'])->group(function () {
         )
         ->name('two-factor.show');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');

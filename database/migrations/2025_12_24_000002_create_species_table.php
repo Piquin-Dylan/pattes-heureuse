@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('races', function (Blueprint $table) {
+        Schema::create('species', function (Blueprint $table) {
             $table->id();
-            $table->string('race_name');
-            $table->foreignId('species_id');
+            $table->string('species_name');
+            $table->foreignId('coats_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('race');
+        Schema::dropIfExists('species');
     }
 };

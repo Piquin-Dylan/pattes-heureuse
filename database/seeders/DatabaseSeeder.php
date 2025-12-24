@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Coats;
 use App\Models\Race;
 use App\Models\Species;
 use App\Models\User;
@@ -21,11 +22,26 @@ class DatabaseSeeder extends Seeder
             'Chien' => ['Labrador', 'Caniche', 'Berger Allemand'],
             'Lapin' => ['Bélier', 'Rex'],
         ];
+        $dataCoat = [
+            'Chat' => ['Court', 'Long', 'Frisé'],
+            'Chien' => ['Court', 'Long', 'Double couche'],
+            'Lapin' => ['Court', 'Long', 'Angora'],
+        ];
 
+        $coats = [];
+        foreach ($dataCoat as $speciesName => $coatsArray) {
+            foreach ($coatsArray as $coatName) {
+                $coats[$speciesName][] = Coats::create(['name' => $coatName]);
+            }
+        }
+
+// 2. Seed species avec coat_id
         foreach ($data as $speciesName => $races) {
             $species = Species::create([
                 'species_name' => $speciesName,
+                'coat_id' => $coats[$speciesName][0]->id,
             ]);
+
 
             foreach ($races as $raceName) {
                 Race::create([
