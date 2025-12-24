@@ -1,3 +1,3 @@
 <div>
-    {{-- In work, do what you enjoy. --}}
+    <h1>Bonjour {{$this->animal->name}}</h1>
 </div>

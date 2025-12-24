@@ -18,7 +18,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::get('greeter', Greeter::class)->name('greeter');
-Route::get('show-animal', ShowAnimal::class)->name('show-animal');
+Route::get('show-animal/{animal}', \App\Livewire\DescriptionAnimal::class)->name('show-animal');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

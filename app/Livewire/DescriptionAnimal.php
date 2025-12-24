@@ -2,10 +2,21 @@
 
 namespace App\Livewire;
 
+use AllowDynamicProperties;
+use App\Models\Animals;
 use Livewire\Component;
 
-class DescriptionAnimal extends Component
+#[AllowDynamicProperties] class DescriptionAnimal extends Component
 {
+
+    public $animal;
+
+    public function mount(Animals $animal)
+    {
+
+        $this->animal = $animal;
+    }
+
     public function render()
     {
         return view('livewire.description-animal');
