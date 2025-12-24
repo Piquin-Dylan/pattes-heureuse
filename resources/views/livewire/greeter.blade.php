@@ -12,12 +12,21 @@
     </select>
 
     <label>Selectionner la race</label>
-    <select wire:mode.livel="race_name">
+    <select wire:mode.live="race_name">
         <option value="">-- Choisir une race --</option>
         @foreach($race as $r)
             <option value="{{$r->id}}">{{$r->race_name}}</option>
         @endforeach
     </select>
+    <label>Sélectionner un pelage</label>
+
+    <select wire:model.live="coats_species">
+        <option value="">-- Choisir un pelage --</option>
+        @foreach($coats_species as $coat)
+            <option value="{{ $coat->id }}">{{ $coat->name }}</option>
+        @endforeach
+    </select>
+
 
     <label for="age">Age de l'animal</label>
     <input wire:model="age" type="number" name="age" id="age" placeholder="Entrer l'age de l'animal">

@@ -17,31 +17,33 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $data = [
+        $dataRaces = [
             'Chat' => ['Persan', 'Siamois', 'Maine Coon'],
             'Chien' => ['Labrador', 'Caniche', 'Berger Allemand'],
             'Lapin' => ['Bélier', 'Rex'],
         ];
-        $dataCoat = [
+
+        $dataCoats = [
             'Chat' => ['Court', 'Long', 'Frisé'],
             'Chien' => ['Court', 'Long', 'Double couche'],
             'Lapin' => ['Court', 'Long', 'Angora'],
         ];
 
         $coats = [];
-        foreach ($dataCoat as $speciesName => $coatsArray) {
+        foreach ($dataCoats as $speciesName => $coatsArray) {
             foreach ($coatsArray as $coatName) {
                 $coats[$speciesName][] = Coats::create(['name' => $coatName]);
             }
         }
 
-// 2. Seed species avec coat_id
-        foreach ($data as $speciesName => $races) {
+        foreach ($dataRaces as $speciesName => $races) {
             $species = Species::create([
                 'species_name' => $speciesName,
-                'coat_id' => $coats[$speciesName][0]->id,
             ]);
 
+            foreach ($coats[$speciesName] as $coat) {
+                $species->coats()->attach($coat->id);
+            }
 
             foreach ($races as $raceName) {
                 Race::create([

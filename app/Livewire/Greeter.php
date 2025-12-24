@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Animals;
+use App\Models\Coats;
 use App\Models\Race;
 use App\Models\Species;
 use Livewire\Attributes\Validate;
@@ -32,16 +33,24 @@ class Greeter extends Component
 
     public $race;
 
+    public $coats_species = '';
+
     public function mount()
     {
         $this->race = collect([]);
+        $this->coats_species = collect([]);
     }
 
     public function updatedSpeciesName()
     {
         $this->race = Race::where('species_id', (int)$this->species_name)->get();
-
         $this->race_name = '';
+        $this->updateCoats();
+    }
+
+    public function updateCoats() {
+    $species_coats = Species::find($this->species_name);
+    $this->coats_species = $species_coats->coats;
     }
 
     public function submit()
@@ -61,6 +70,7 @@ class Greeter extends Component
 
         $this->reset(['name', 'description', 'photo', 'species_name', 'race_name','age']);
         $this->race = collect([]);
+        $this->coats_species = collect([]);
     }
 
     public function render()
@@ -68,6 +78,7 @@ class Greeter extends Component
         return view('livewire.greeter', [
             'animals' => Animals::all(),
             'species' => Species::all(),
+            'coats_species' => $this->coats_species,
             'race' => $this->race,
         ]);
     }

@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('species', function (Blueprint $table) {
             $table->id();
             $table->string('species_name');
-            $table->foreignId('coats_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('coats_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
