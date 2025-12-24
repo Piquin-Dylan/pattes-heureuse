@@ -18,6 +18,8 @@
         </flux:navlist.group>
         <flux:navlist.item icon="home" :href="route('greeter')" :current="request()->routeIs('greeter')"
                            wire:navigate>{{ __('Animals') }}</flux:navlist.item>
+        <flux:navlist.item icon="home" :href="route('volunteers')" :current="request()->routeIs('volunteers')"
+                           wire:navigate>{{ __('Volunteers') }}</flux:navlist.item>
     </flux:navlist>
 
     <flux:spacer/>
