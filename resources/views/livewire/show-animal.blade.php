@@ -6,13 +6,14 @@
 
     <ul class="flex flex-row gap-6 pt-4">
         @foreach($animals as $animal)
-            <li  class="bg-white text-2xl text-black p-5 rounded-2xl w-32 text-center"
+            <a href="{{route('show-animal')}}">
+            <li  class="bg-white text-2xl  text-black p-5 rounded-2xl w-32 text-center"
                 wire:key="{{$animal->id}}" >
                 <img src="{{ asset('storage/' . $animal->photo_path) }}" alt="{{ $animal->name }}" width="100">
                 <div>{{ $animal->name }}</div>
-                <button wire:confirm="Voulez vous vraiment cette animal ?" wire:click="delete({{$animal->id}})">Delete</button>
+                <button wire:confirm="Voulez vous vraiment supprimer cette animal ?" wire:click="delete({{$animal->id}})">Delete</button>
+            </li></a>
 
-            </li>
         @endforeach
     </ul>
 </div>

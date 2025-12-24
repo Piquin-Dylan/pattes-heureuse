@@ -5,6 +5,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
+use App\Livewire\ShowAnimal;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -17,6 +18,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::get('greeter', Greeter::class)->name('greeter');
+Route::get('show-animal', ShowAnimal::class)->name('show-animal');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
