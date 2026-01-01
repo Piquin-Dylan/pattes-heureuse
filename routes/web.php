@@ -9,11 +9,6 @@ use App\Livewire\DescriptionAnimal;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-/*
-|--------------------------------------------------------------------------
-| CLIENT (site public)
-|--------------------------------------------------------------------------
-*/
 
 Route::view('/', 'client.home')->name('client.home');
 Route::view('/about', 'client.about')->name('client.about');
@@ -22,38 +17,39 @@ Route::view('/adoption', 'client.adoption')->name('client.adoption');
 Route::view('/descriptionAnimal', 'client.descriptionAnimal')->name('client.descriptionAnimal');
 Route::view('/contact', 'client.contact')->name('client.contact');
 
-/*
-|--------------------------------------------------------------------------
-| ADMIN
-|--------------------------------------------------------------------------
-*/
 
-Route::domain('admin.' . parse_url(config('app.url'), PHP_URL_HOST))
-    ->middleware(['auth'])
-    ->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
-        Route::view('/dashboard', 'dashboard')->name('dashboard');
+    // Dashboard
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-        Route::get('/greeter', Greeter::class)->name('greeter');
-        Route::get('/volunteers', \App\Livewire\Volunteers::class)->name('volunteers');
-        Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
+    // Livewire pages
+    Route::get('/greeter', Greeter::class)->name('greeter');
+    Route::get('/volunteers', \App\Livewire\Volunteers::class)->name('volunteers');
+    Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
 
-        Route::redirect('/settings', '/settings/profile');
-        Route::get('/settings/profile', Profile::class)->name('profile.edit');
-        Route::get('/settings/password', Password::class)->name('user-password.edit');
-        Route::get('/settings/appearance', Appearance::class)->name('appearance.edit');
+    // Settings
+    Route::redirect('/settings', '/admin/settings/profile');
+    Route::get('/settings/profile', Profile::class)->name('profile.edit');
+    Route::get('/settings/password', Password::class)->name('user-password.edit');
+    Route::get('/settings/appearance', Appearance::class)->name('appearance.edit');
 
-        Route::get('/settings/two-factor', TwoFactor::class)
-            ->middleware(
-                when(
-                    Features::canManageTwoFactorAuthentication()
-                    && Features::optionEnabled(
-                        Features::twoFactorAuthentication(),
-                        'confirmPassword'
-                    ),
-                    ['password.confirm'],
-                    [],
-                ),
+    Route::get('/settings/two-factor', TwoFactor::class)
+        ->middleware(
+            when(
+                Features::canManageTwoFactorAuthentication()
+                && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                ['password.confirm'],
+                []
             )
-            ->name('two-factor.show');
-    });
+        )
+        ->name('two-factor.show');
+});
+
+
+Route::get('/admin', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login'); // Fortify login route
+});
