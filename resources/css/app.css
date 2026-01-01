@@ -11,6 +11,20 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
+    --color-regal-orange: #F38B2D;
+    --color-regal-baige: #FCE9D9;
+    --color-regal-grey: #DEDEDE;
+    --max-width-content: 840px;
+    --max-width-section: 1416px;
+    --max-width-image: 480px;
+    --max-height-image: 412px;
+    --gap-content: 96px;
+    --text-title: 28px;
+    --text-subtitle: 24px;
+    --text-content: 20;
+    --text-cta: 20px;
+    --p-b-section: 48px;
+
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
     --color-zinc-200: #e5e5e5;
@@ -37,7 +51,6 @@
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -47,12 +60,85 @@
     }
 }
 
+.input {
+    @apply bg-white rounded-2xl text-black p-2 w-76 border border-[#E5E5E5];
+}
+
+.label {
+    @apply flex flex-col gap-2;
+}
+
+.spanContact {
+    @apply flex flex-col gap-2 text-2xl;
+}
+
+.title {
+    @apply text-title font-bold pb-4;
+}
+
+.subtile {
+    @apply text-subtitle pb-4;
+}
+
+.sectionFlex {
+    @apply flex justify-center flex-col max-w-section lg:flex-row lg:gap-content;
+}
+
+.cta1 {
+    @apply rounded-lg bg-white p-4 w-41 font-extrabold text-regal-orange hover:bg-regal-orange hover:text-white;
+}
+
+.cta2 {
+    @apply rounded-lg bg-regal-orange p-4 w-41 font-extrabold text-white hover:bg-white hover:text-regal-orange;
+}
+
+.cta3 {
+    @apply rounded-lg bg-regal-orange p-4 w-41 font-extrabold text-white justify-center;
+}
+
+.styleStat {
+    @apply text-black font-bold rounded-3xl p-10;
+}
+
+@layer utilities {
+    .border-stat {
+        border: 10px solid transparent;
+        border-image-source: url('../../public/bordure.svg');
+        border-image-slice: 30;
+    }
+
+    .burger-line {
+        @apply w-8 h-[3px] bg-white transition-all duration-300 origin-center;
+    }
+
+    .mobile-menu {
+        @apply hidden flex-col gap-4 opacity-0 -translate-y-3 transition-all duration-300 ease-out
+        md:flex md:flex-row md:gap-6 md:mt-0 md:opacity-100 md:translate-y-0;
+    }
+
+    nav:has(#nav-toggle:checked) .mobile-menu {
+        @apply block opacity-100 translate-y-0 mt-4;
+    }
+
+    nav:has(#nav-toggle:checked) .burger-line:nth-child(1) {
+        @apply translate-y-[9px] rotate-45;
+    }
+
+    nav:has(#nav-toggle:checked) .burger-line:nth-child(2) {
+        @apply opacity-0;
+    }
+
+    nav:has(#nav-toggle:checked) .burger-line:nth-child(3) {
+        @apply -translate-y-[9px] -rotate-45;
+    }
+}
+
 [data-flux-field]:not(ui-radio, ui-checkbox) {
     @apply grid gap-2;
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -61,6 +147,4 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
+

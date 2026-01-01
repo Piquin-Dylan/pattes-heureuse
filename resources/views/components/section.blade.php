@@ -8,7 +8,7 @@
     'cta2_link' => null,
     'image' => null,
 ])
-<section class="pb-6 pl-5 pr-5 pt-8 md:pt-12 sectionFlex">
+<section  class="pb-6 pl-5 pr-5 pt-8 md:pt-12 sectionFlex ">
     <div class="max-w-content">
 
         <h2 class="hidden">{{ $title_section }}</h2>

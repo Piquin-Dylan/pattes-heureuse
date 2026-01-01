@@ -10,7 +10,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 </head>
-<body class="bg-regal-baige">
+<body class="bg-black">
 <x-nav></x-nav>
 <section class="flex flex-col gap-4 p-5 md:flex-row lg:justify-center lg:gap-8">
     <form class="flex flex-col justify-center gap-4 items-center bg-white  rounded-3xl p-5 max-w-90">
@@ -50,6 +50,5 @@
         </ul>
     </aside>
 </section>
-
 </body>
 </html>

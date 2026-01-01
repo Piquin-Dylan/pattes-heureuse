@@ -12,7 +12,7 @@ use Laravel\Fortify\Features;
 
 Route::domain('pattes-heureuse.test')->group(function () {
 
-    Route::view('/', 'client.home')->name('client.home');
+    Route::view('/home', 'client.home')->name('client.home');
     Route::view('/about', 'client.about')->name('client.about');
     Route::view('/volunteers', 'client.volunteers')->name('client.volunteers');
     Route::view('/adoption', 'client.adoption')->name('client.adoption');

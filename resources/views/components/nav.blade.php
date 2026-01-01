@@ -18,7 +18,7 @@
                md:flex md:flex-row md:gap-6 md:mt-0 md:opacity-100 md:translate-y-0">
 
         <li><a href="{{route('client.home')}}">Accueil</a></li>
-        <li><a href="{{route('client.home')}}">A propos</a></li>
+        <li><a href="{{route('client.about')}}">A propos</a></li>
         <li><a href="{{route('client.volunteers')}}">Devenir bénévole</a></li>
         <li><a href="{{route('client.adoption')}}">Adoption</a></li>
         <li><a href="{{route('client.contact')}}">Contact</a></li>
