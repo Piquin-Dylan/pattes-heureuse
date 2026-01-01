@@ -5,10 +5,12 @@
 
     if ($link === null) {
         $href = '#';
-    } elseif (Str::startsWith($link, ['https://', 'https://'])) {
+    } elseif (Str::startsWith($link, ['http://', 'https://'])) {
         $href = $link;
-    } else {
+    } elseif (Route::has($link)) {
         $href = route($link);
+    } else {
+        $href = '#';
     }
 @endphp
 
