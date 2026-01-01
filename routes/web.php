@@ -9,21 +9,16 @@ use App\Livewire\DescriptionAnimal;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-
 Route::domain('pattes-heureuse.test')->group(function () {
-
     Route::view('/home', 'client.home')->name('client.home');
     Route::view('/about', 'client.about')->name('client.about');
     Route::view('/volunteers', 'client.volunteers')->name('client.volunteers');
     Route::view('/adoption', 'client.adoption')->name('client.adoption');
     Route::view('/descriptionAnimal', 'client.descriptionAnimal')->name('client.descriptionAnimal');
     Route::view('/contact', 'client.contact')->name('client.contact');
-
 });
 
-
 Route::domain('admin.pattes-heureuse.test')->middleware(['auth'])->group(function () {
-
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::get('/greeter', Greeter::class)->name('greeter');
@@ -48,5 +43,5 @@ Route::domain('admin.pattes-heureuse.test')->middleware(['auth'])->group(functio
 });
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    return redirect()->route('client.about');
+});
