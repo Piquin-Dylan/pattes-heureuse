@@ -21,7 +21,7 @@ Route::get('/description-animal/{animal}', function (Animals $animal) {
 use Illuminate\Support\Facades\Schema;
 
 Route::get('/check-animals-columns', function () {
-    $columns = Schema::getColumnListing('animals');   
+    $columns = Schema::getColumnListing('animals');
     return response()->json([
         'columns' => $columns,
     ]);
