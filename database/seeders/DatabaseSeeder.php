@@ -5,18 +5,12 @@ namespace Database\Seeders;
 use App\Models\Coats;
 use App\Models\Race;
 use App\Models\Species;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         $dataRaces = [
             'Chat' => ['Persan', 'Siamois', 'Maine Coon'],
             'Chien' => ['Labrador', 'Caniche', 'Berger Allemand'],
@@ -30,23 +24,26 @@ class DatabaseSeeder extends Seeder
         ];
 
         $coats = [];
+
         foreach ($dataCoats as $speciesName => $coatsArray) {
             foreach ($coatsArray as $coatName) {
-                $coats[$speciesName][] = Coats::create(['name' => $coatName]);
+                $coats[$speciesName][] = Coats::firstOrCreate([
+                    'name' => $coatName,
+                ]);
             }
         }
 
         foreach ($dataRaces as $speciesName => $races) {
-            $species = Species::create([
+            $species = Species::firstOrCreate([
                 'species_name' => $speciesName,
             ]);
 
-            foreach ($coats[$speciesName] as $coat) {
-                $species->coats()->attach($coat->id);
-            }
+            $species->coats()->syncWithoutDetaching(
+                collect($coats[$speciesName])->pluck('id')->toArray()
+            );
 
             foreach ($races as $raceName) {
-                Race::create([
+                Race::firstOrCreate([
                     'race_name' => $raceName,
                     'species_id' => $species->id,
                 ]);
