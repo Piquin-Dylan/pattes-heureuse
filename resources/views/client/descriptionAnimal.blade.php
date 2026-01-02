@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-regal-baige">
-<x-nav />
+<x-nav/>
 
 <section class="flex justify-center py-10">
     <div class="bg-white rounded-2xl shadow-lg w-full max-w-4xl p-6">
@@ -59,10 +59,7 @@
         </div>
 
         <div class="mt-6 flex justify-center">
-            <button class="cta2">
-                <a href="#" class="" data-toggle="modal" data-target="#ModalCreate"></a>
-                Adopter
-            </button>
+            <a href="{{route('form-adoption')}}" class="cta2">Adopter</a>
         </div>
 
     </div>
