@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $animal->name }}</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-regal-baige">
-<x-nav/>
+<x-layouts.client>
 
 <section class="flex justify-center py-10">
     <div class="bg-white rounded-2xl shadow-lg w-full max-w-4xl p-6">
@@ -59,12 +48,10 @@
         </div>
 
         <div class="mt-6 flex justify-center">
-            <a href="{{route('form-adoption')}}" class="cta2">Adopter</a>
+            <a href="{{route('form-adoption',$animal->id)}} "  class="cta2">Adopter</a>
         </div>
 
     </div>
 </section>
 
-<x-footer/>
-</body>
-</html>
+</x-layouts.client>

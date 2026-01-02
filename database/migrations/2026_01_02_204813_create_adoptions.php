@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('adoption', function (Blueprint $table) {
+        Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
-            $table>$table->foreignId('animal_id');
-            $table->string('status');
+            $table->string('animal_id');
+            $table->string('status')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('tel')->nullable();
             $table->timestamps();
         });
@@ -20,6 +20,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('adoption');
+        Schema::dropIfExists('adoptions');
     }
 };
