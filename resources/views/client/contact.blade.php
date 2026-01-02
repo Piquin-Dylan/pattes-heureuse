@@ -1,17 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
-</head>
-<body class="bg-black">
-<x-nav></x-nav>
+<x-layouts.client>
 <section class="flex flex-col gap-4 p-5 md:flex-row lg:justify-center lg:gap-8">
     <form class="flex flex-col justify-center gap-4 items-center bg-white  rounded-3xl p-5 max-w-90">
         <h2 class="">Formulaire de contact</h2>
@@ -50,5 +37,4 @@
         </ul>
     </aside>
 </section>
-</body>
-</html>
+</x-layouts.client>

@@ -8,6 +8,6 @@ class AnimalAdoption extends Component
 {
     public function render()
     {
-        return view('livewire.animal-adoption');
+        return view('livewire.animal-adoption')->layout('components.layouts.client');
     }
 }
