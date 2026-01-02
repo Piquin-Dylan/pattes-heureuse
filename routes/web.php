@@ -44,6 +44,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/greeter', Greeter::class)->name('greeter');
     Route::get('/volunteers', \App\Livewire\Volunteers::class)->name('volunteers');
     Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
+    Route::get('/show-adoptions', \App\Livewire\ShowAdoption::class)->name('show-adoptions');
 
     // Settings
     Route::redirect('/settings', '/admin/settings/profile');

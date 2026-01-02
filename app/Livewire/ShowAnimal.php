@@ -8,7 +8,6 @@ use App\Models\Animals;
 class ShowAnimal extends Component
 {
     public $searchAnimal = '';
-    public $selectedAnimal = null;
 
     public function delete(Animals $animal)
     {
