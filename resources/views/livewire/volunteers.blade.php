@@ -1,35 +1,53 @@
-<div class="max-w-5xl mx-auto p-8 bg-gray-900 rounded-xl shadow-lg text-white">
-    <h1 class="text-3xl font-bold mb-6">Créer un bénévole</h1>
+<div class="py-10">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-center text-regal-orange mb-6">Créer un bénévole</h2>
 
-    @if (session()->has('message'))
-        <div class="mb-4 bg-green-600 text-white p-3 rounded">
-            {{ session('message') }}
+        @if (session()->has('message'))
+            <div class="mb-4 bg-green-600 text-white p-3 rounded">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        <form wire:submit.prevent="submit" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Nom</label>
+                <input type="text" wire:model.defer="name" placeholder="Nom du bénévole"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-regal-orange">
+                @error('name') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Email</label>
+                <input type="email" wire:model.defer="email" placeholder="Email"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-regal-orange">
+                @error('email') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Téléphone</label>
+                <input type="tel" wire:model.defer="tel" placeholder="Téléphone"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-regal-orange">
+                @error('tel') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Photo</label>
+                <input type="file" wire:model="image"
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-regal-orange">
+                @error('image') <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="md:col-span-2">
+                <button type="submit"
+                        class="w-full bg-regal-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors duration-300">
+                    Créer le bénévole
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-16">
+            <h3 class="text-xl font-bold text-regal-orange mb-6">Liste des bénévoles</h3>
+            <livewire:show-volunteers></livewire:show-volunteers>
         </div>
-    @endif
-
-    <form wire:submit.prevent="submit" class="flex flex-col gap-4">
-        <input wire:model="name" type="text" placeholder="Nom"
-               class="p-3 rounded border border-gray-700 bg-gray-800 text-white">
-        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
-
-        <input wire:model="email" type="email" placeholder="Email"
-               class="p-3 rounded border border-gray-700 bg-gray-800 text-white">
-        @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
-
-        <input wire:model="tel" type="tel" placeholder="Téléphone"
-               class="p-3 rounded border border-gray-700 bg-gray-800 text-white">
-        @error('tel') <span class="text-red-500">{{ $message }}</span> @enderror
-
-
-
-        <input type="file" wire:model="image" class="p-2 rounded border border-gray-700 bg-gray-800 text-white">
-        @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
-
-        <button type="submit"
-                class="mt-4 bg-regal-orange hover:bg-orange-700 text-black font-bold py-3 rounded-lg transition-all">
-            Créer le bénévole
-        </button>
-    </form>
-
-        <livewire:show-volunteers></livewire:show-volunteers>
+    </div>
 </div>
