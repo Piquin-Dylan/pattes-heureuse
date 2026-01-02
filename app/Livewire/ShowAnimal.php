@@ -17,7 +17,7 @@ class ShowAnimal extends Component
 
     public function render()
     {
-        return view('livewire.show-animal', [
+        return view('livewire.animals.show-animal', [
             'animals' => Animals::search($this->searchAnimal)->get(),
         ]);
     }

@@ -81,7 +81,7 @@ class Greeter extends Component
 
     public function render()
     {
-        return view('livewire.greeter', [
+        return view('livewire.animals.greeter', [
             'animals' => Animals::all(),
             'species' => Species::all(),
             'coats_species' => $this->coats_species,
