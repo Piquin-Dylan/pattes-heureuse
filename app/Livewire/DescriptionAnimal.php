@@ -19,6 +19,6 @@ use Livewire\Component;
 
     public function render()
     {
-        return view('livewire.description-animal');
+        return view('livewire.animals.description-animal');
     }
 }

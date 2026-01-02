@@ -5,4 +5,6 @@
     <span>{{$this->animal->species->species_name}}</span>
     <span>{{$this->animal->coats->name}}</span>
     <img src="{{ asset('storage/' . $animal->photo_path) }}" alt="{{ $animal->name }}" width="100">
+    <button type="button" href="/rooms/create" class="btn btn-primary" data-bs-toggle="modal" data-toggle="mainmodal">Create
+    </button>
 </div>
