@@ -25,7 +25,6 @@
      <x-select option1="chat" option2="chien"></x-select>
      <x-select option1="petit" option2="grand"></x-select>
     </div>
-    <x-cardAnimals image="{{asset('Sans titre-1 5.png')}}" name="Rex" sexe="Mâle" age="2 ans" cta="adopter"></x-cardAnimals>
 </section>
 <x-footer></x-footer>
 </body>

@@ -1,3 +1,4 @@
+
 <div>
     <h1>Bonjour {{$this->animal->name}}</h1>
     <span>{{$this->animal->description}}</span>

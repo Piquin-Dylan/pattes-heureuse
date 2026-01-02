@@ -2,17 +2,31 @@
 
 namespace App\Livewire;
 
-use App\Models\Animals;
 use Livewire\Component;
+use App\Models\Animals;
 
 class ShowAnimal extends Component
 {
     public $searchAnimal = '';
+    public $selectedAnimal = null;
 
+    public function delete(Animals $animal)
+    {
+        $animal->delete();
+    }
 
-    public function delete(Animals $animals) {
+    // Sélectionner l'animal à afficher
+    public function selectAnimal($animalId)
+    {
+        $this->selectedAnimal = Animals::find($animalId);
+        // Pas besoin de $this->emit ici
+    }
 
-        $animals->delete();
+    // Méthode pour confirmer l'adoption
+    public function adoptAnimal($animalId)
+    {
+        $animal = Animals::find($animalId);
+        session()->flash('message', "Vous avez choisi d'adopter {$animal->name} !");
     }
 
     public function render()

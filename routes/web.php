@@ -6,6 +6,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use App\Livewire\DescriptionAnimal;
+use App\Models\Animals;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -14,7 +15,10 @@ Route::view('/', 'client.home')->name('client.home');
 Route::view('/about', 'client.about')->name('client.about');
 Route::view('/volunteers', 'client.volunteers')->name('client.volunteers');
 Route::view('/adoption', 'client.adoption')->name('client.adoption');
-Route::view('/descriptionAnimal', 'client.descriptionAnimal')->name('client.descriptionAnimal');
+Route::get('/description-animal/{animal}', function (Animals $animal) {
+    return view('client.descriptionAnimal', compact('animal'));
+})->name('client.descriptionAnimal');
+
 Route::view('/contact', 'client.contact')->name('client.contact');
 
 
