@@ -9,44 +9,35 @@ use App\Livewire\DescriptionAnimal;
 use App\Models\Animals;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
-
+use Illuminate\Support\Facades\Schema;
 
 Route::view('/', 'client.home')->name('client.home');
 Route::view('/about', 'client.about')->name('client.about');
 Route::view('/volunteers', 'client.volunteers')->name('client.volunteers');
 Route::view('/adoption', 'client.adoption')->name('client.adoption');
+Route::view('/contact', 'client.contact')->name('client.contact');
+
 Route::get('/description-animal/{animal}', function (Animals $animal) {
     return view('client.descriptionAnimal', compact('animal'));
 })->name('client.descriptionAnimal');
-Route::get('/form-adoption/{animal}', function (Animals $animal) {
-    return view('client.formAdoption',compact('animal'));
-})->name('form-adoption');
 
-use Illuminate\Support\Facades\Schema;
+Route::get('/form-adoption/{animal}', function (Animals $animal) {
+    return view('client.formAdoption', compact('animal'));
+})->name('form-adoption');
 
 Route::get('/check-animals-columns', function () {
     $columns = Schema::getColumnListing('animals');
-    return response()->json([
-        'columns' => $columns,
-    ]);
+    return response()->json(['columns' => $columns]);
 });
 
-
-Route::view('/contact', 'client.contact')->name('client.contact');
-
-
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-
-    // Dashboard
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    // Livewire pages
     Route::get('/greeter', Greeter::class)->name('greeter');
     Route::get('/volunteers', \App\Livewire\Volunteers::class)->name('volunteers');
     Route::get('/show-animal/{animal}', DescriptionAnimal::class)->name('show-animal');
     Route::get('/show-adoptions', \App\Livewire\ShowAdoption::class)->name('show-adoptions');
 
-    // Settings
     Route::redirect('/settings', '/admin/settings/profile');
     Route::get('/settings/profile', Profile::class)->name('profile.edit');
     Route::get('/settings/password', Password::class)->name('user-password.edit');
@@ -62,12 +53,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             )
         )
         ->name('two-factor.show');
-});
 
-
-Route::get('/admin', function () {
-    if (auth()->check()) {
+    Route::get('/', function () {
         return redirect()->route('dashboard');
-    }
-    return redirect()->route('login'); // Fortify login route
+    });
 });
