@@ -15,19 +15,6 @@ class ShowAnimal extends Component
         $animal->delete();
     }
 
-    // Sélectionner l'animal à afficher
-    public function selectAnimal($animalId)
-    {
-        $this->selectedAnimal = Animals::find($animalId);
-        // Pas besoin de $this->emit ici
-    }
-
-    // Méthode pour confirmer l'adoption
-    public function adoptAnimal($animalId)
-    {
-        $animal = Animals::find($animalId);
-        session()->flash('message', "Vous avez choisi d'adopter {$animal->name} !");
-    }
 
     public function render()
     {
