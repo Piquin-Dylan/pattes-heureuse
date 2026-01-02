@@ -10,31 +10,35 @@ class Animals extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description',
-        'name', 'photo_path',
+    protected $fillable = [
+        'name',
+        'description',
+        'photo_path',
         'species_id',
         'race_id',
-        'age',
-        'coats_species',
         'coats_species_id',
-        'coats_specy_id',
-        'race',
+        'age',
     ];
 
+    // Recherche simple
     public static function search(mixed $searchAnimal)
     {
-        return Animals::where('name', 'LIKE', "%$searchAnimal%");
+        return self::where('name', 'LIKE', "%$searchAnimal%");
     }
 
+    // Relations
     public function species(): BelongsTo
     {
-
         return $this->belongsTo(Species::class);
     }
 
     public function coats(): BelongsTo
     {
-        return $this->belongsTo(Coats::class,'coats_specy_id');
+        return $this->belongsTo(Coats::class, 'coats_species_id');
     }
 
+    public function race(): BelongsTo
+    {
+        return $this->belongsTo(Race::class);
+    }
 }

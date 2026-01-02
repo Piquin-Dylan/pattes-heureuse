@@ -12,9 +12,9 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description');
             $table->string('photo_path')->nullable();
-            $table->foreignId('species_id');
-            $table->foreignId('race_id');
-            $table->foreignId('coats_specy_id');
+            $table->foreignId('species_id')->constrained()->onDelete('cascade');
+            $table->foreignId('race_id')->constrained()->onDelete('cascade');
+            $table->foreignId('coats_species_id')->constrained()->onDelete('cascade');
             $table->integer('age');
             $table->timestamps();
         });

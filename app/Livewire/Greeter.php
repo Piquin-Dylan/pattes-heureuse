@@ -23,21 +23,17 @@ class Greeter extends Component
     #[Validate('required|image|max:1024')]
     public $photo;
 
-    #[Validate('required')]
+    #[Validate('required|integer')]
     public $age;
 
-    #[Validate('required')]
+    #[Validate('required|integer')]
     public $species_name = '';
 
-    public $race_name = '';
+    public $race_id = '';
+    public $coats_species_id = '';
 
-    public $race;
-
-    public $coats_species = '';
-
-    public $coats_species_id;
-
-    public $race_id;
+    public $race = [];
+    public $coats_species = [];
 
     public function mount()
     {
@@ -48,14 +44,15 @@ class Greeter extends Component
     public function updatedSpeciesName()
     {
         $this->race = Race::where('species_id', (int)$this->species_name)->get();
-        $this->race_name = '';
+        $this->race_id = '';
         $this->updateCoats();
     }
 
     public function updateCoats()
     {
-        $species_coats = Species::find($this->species_name);
-        $this->coats_species = $species_coats->coats;
+        $species = Species::find($this->species_name);
+        $this->coats_species = $species ? $species->coats : collect([]);
+        $this->coats_species_id = '';
     }
 
     public function submit()
@@ -68,13 +65,13 @@ class Greeter extends Component
             'name' => $this->name,
             'description' => $this->description,
             'photo_path' => $path,
-            'species_id' => $this->species_name,
-            'race_id' => $this->race,
-            'coats_specy_id' => $this->coats_species_id,
-            'age' => $this->age,
+            'species_id' => (int)$this->species_name,
+            'race_id' => (int)$this->race_id,
+            'coats_species_id' => (int)$this->coats_species_id,
+            'age' => (int)$this->age,
         ]);
 
-        $this->reset(['name', 'description', 'photo', 'species_name', 'race_name', 'age', 'coats_species']);
+        $this->reset(['name', 'description', 'photo', 'species_name', 'race_id', 'coats_species_id', 'age']);
         $this->race = collect([]);
         $this->coats_species = collect([]);
     }
@@ -84,8 +81,8 @@ class Greeter extends Component
         return view('livewire.animals.greeter', [
             'animals' => Animals::all(),
             'species' => Species::all(),
+            'race' => $this->race,
             'coats_species' => $this->coats_species,
-            'race_id' => $this->race_id,
         ]);
     }
 }
