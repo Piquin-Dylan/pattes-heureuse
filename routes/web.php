@@ -18,6 +18,15 @@ Route::view('/adoption', 'client.adoption')->name('client.adoption');
 Route::get('/description-animal/{animal}', function (Animals $animal) {
     return view('client.descriptionAnimal', compact('animal'));
 })->name('client.descriptionAnimal');
+use Illuminate\Support\Facades\Schema;
+
+Route::get('/check-animals-columns', function () {
+    $columns = Schema::getColumnListing('animals');   
+    return response()->json([
+        'columns' => $columns,
+    ]);
+});
+
 
 Route::view('/contact', 'client.contact')->name('client.contact');
 
